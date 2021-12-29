@@ -15,28 +15,28 @@
                     @method('post')
                     <div class="mb-3 mt-3">
                       <label for="name" class="form-label">Name:</label>
-                      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+                      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" value="{{old('name')}}">
                       @if ($errors->has('name'))
                           <p class="text-danger">{{ $errors->first('name') }}</p>
                       @endif
                     </div>
                     <div class="mb-3 mt-3">
                       <label for="email" class="form-label">Email:</label>
-                      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="{{old('email')}}">
                       @if ($errors->has('email'))
                           <p class="text-danger">{{ $errors->first('email') }}</p>
                       @endif
                     </div>
                     <div class="mb-3">
                       <label for="password" class="form-label">Password:</label>
-                      <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+                      <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" value="{{old('password')}}">
                       @if ($errors->has('password'))
                           <p class="text-danger">{{ $errors->first('password') }}</p>
                       @endif
                     </div>
                     <div class="mb-3">
                       <label for="cpassword" class="form-label">Confirm Password:</label>
-                      <input type="password" class="form-control" id="cpassword" placeholder="Enter Confirm password" name="cpassword">
+                      <input type="password" class="form-control" id="cpassword" placeholder="Enter Confirm password" name="cpassword" value="{{old('cpassword')}}">
                       @if ($errors->has('cpassword'))
                           <p class="text-danger">{{ $errors->first('cpassword') }}</p>
                       @endif
