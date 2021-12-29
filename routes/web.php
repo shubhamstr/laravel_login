@@ -15,14 +15,19 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', function () {
-    return view('layouts.app');
+    return view('welcome');
 });
 
-Route::get('login', [AuthController::class, 'login_view'])->name('login');
-Route::post('login', [AuthController::class, 'login'])->name('login');
-Route::get('register', [AuthController::class, 'register_view'])->name('register');
-Route::post('register', [AuthController::class, 'register'])->name('register');
+Route::group(['middleware'=>'guest'], function ()
+{
+    Route::get('login', [AuthController::class, 'login_view'])->name('login');
+    Route::post('login', [AuthController::class, 'login'])->name('login')->middleware('throttle:2,1');
+    Route::get('register', [AuthController::class, 'register_view'])->name('register');
+    Route::post('register', [AuthController::class, 'register'])->name('register')->middleware('throttle:2,1');
+});
 
-
-Route::get('home', [AuthController::class, 'home_view'])->name('home');
-Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+Route::group(['middleware'=>'auth'], function ()
+{
+    Route::get('home', [AuthController::class, 'home_view'])->name('home');
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+});
