@@ -32,11 +32,15 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         // dd($request->all());
-        // $request->validate([
-        //     'name'=>'required',
-        //     'email'=>'required|unique:users|email',
-        //     'password'=>'required'
-        // ]);
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|unique:users|email',
+            'password'=>'required'
+        ]);
+
+        if($request->password != $request->cpassword){
+            return redirect('register')->withError('Password does not match');
+        }
         User::create([
             'name'=>$request->name,
             'email'=>$request->email,
