@@ -35,8 +35,8 @@
                       @endif
                     </div>
                     <div class="mb-3">
-                      <label for="cpassword" class="form-label">Password:</label>
-                      <input type="password" class="form-control" id="cpassword" placeholder="Enter password" name="cpassword">
+                      <label for="cpassword" class="form-label">Confirm Password:</label>
+                      <input type="password" class="form-control" id="cpassword" placeholder="Enter Confirm password" name="cpassword">
                       @if ($errors->has('cpassword'))
                           <p class="text-danger">{{ $errors->first('cpassword') }}</p>
                       @endif

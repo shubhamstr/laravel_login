@@ -35,7 +35,8 @@ class AuthController extends Controller
         $request->validate([
             'name'=>'required',
             'email'=>'required|unique:users|email',
-            'password'=>'required'
+            'password'=>'required|min:4|max:12',
+            'cpassword'=>'required|min:4|max:12'
         ]);
 
         if($request->password != $request->cpassword){
