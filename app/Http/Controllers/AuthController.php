@@ -18,6 +18,12 @@ class AuthController extends Controller
             'email'=>'required',
             'password'=>'required'
         ]);
+
+        if(\Auth::attempt($request->only('email','password'))){
+            return redirect('home');
+        }
+        
+        return redirect('login')->withError('Incorrect Email/Password');
     }
     public function register_view()
     {
@@ -26,13 +32,12 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         // dd($request->all());
-       return $request->validate([
-            'name'=>'required',
-            'email'=>'required|unique:users|email',
-            'password'=>'required|confirmed'
-        ]);
-
-        Users::create([
+        // $request->validate([
+        //     'name'=>'required',
+        //     'email'=>'required|unique:users|email',
+        //     'password'=>'required'
+        // ]);
+        User::create([
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>\Hash::make($request->password),
@@ -40,8 +45,6 @@ class AuthController extends Controller
 
         if(\Auth::attempt($request->only('email','password'))){
             return redirect('home');
-        }else{
-            return 'test';
         }
 
         return redirect('register')->withError('Error');
@@ -54,6 +57,6 @@ class AuthController extends Controller
     {
         \Session::flush();
         \Auth::logout();
-        return redirect('app');
+        return redirect('/');
     }
 }
