@@ -17,7 +17,7 @@
     </head>
     <body class="">
         <div class="container">
-            <div class="d-flex justify-content-between mt-5 bg-info px-2">
+            <div class="d-flex justify-content-between mt-5 bg-info1 px-2">
                 <h1>Laravel Login</h1>
                 @if (Route::has('login'))
                     <div class="">
